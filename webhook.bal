@@ -19,7 +19,7 @@ service github:PullRequestService on webhookListener {
        slack:Client slackClient = check new ({auth: {token: slackAuthToken}});
         string response = check slackClient->postMessage({
             channelName: slackChannelName,
-            text: "message"
+            text: payload.sender.toString() +"Created a PR in " +payload.repository.toString()
         });
         log:printInfo("Message sent successfully " + response.toString());
 
