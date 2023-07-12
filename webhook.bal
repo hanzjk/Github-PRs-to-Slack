@@ -1,5 +1,6 @@
 import ballerinax/trigger.github;
 import ballerina/http;
+import ballerina/log;
 
 configurable github:ListenerConfig config = ?;
 
@@ -9,7 +10,8 @@ listener github:Listener webhookListener =  new(config,httpListener);
 service github:PullRequestService on webhookListener {
   
     remote function onOpened(github:PullRequestEvent payload ) returns error? {
-      //Not Implemented
+      log:printInfo("Message sent successfully ");
+
     }
     remote function onClosed(github:PullRequestEvent payload ) returns error? {
       //Not Implemented
